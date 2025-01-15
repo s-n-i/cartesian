@@ -67837,7 +67837,9 @@ if ((terrain_mode == TERRAIN_MODE_USE_COVER) || (terrain_mode == TERRAIN_MODE_US
       const yScale = -xScale;
       const xOffset = WORLD_SIZE * x3 / worldScale;
       const yOffset = WORLD_SIZE * (1 - y3 / worldScale);
-      const modelMatrix2 = new Matrix4().scale([xScale, yScale, 1]);
+      const modelMatrix2 = new Matrix4()
+        .translate([props.tile.bbox.left, props.tile.bbox.top, 0])
+        .scale(props.tile.bbox.bottom - props.tile.bbox.top);
       props.autoHighlight = false;
       if (!this.context.viewport.resolution) {
         props.modelMatrix = modelMatrix2;
